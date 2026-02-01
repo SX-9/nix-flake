@@ -31,8 +31,5 @@
     initrd.availableKernelModules = [ "thinkpad_acpi" ];
   };
 
-  services = {
-    fstrim.enable = true;
-    fwupd.enable = true;
-  };
+  services.fwupd.enable = true;
 }

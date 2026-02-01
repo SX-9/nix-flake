@@ -1,20 +1,9 @@
 { hostname, timezone, ... }: {
   system.stateVersion = "24.11";
-  imports = [ ./apps.nix ];
-
-  nixpkgs.config.allowUnfree = true;
-  nix = {
-    settings = {
-      experimental-features = [ "nix-command" "flakes" ];
-      auto-optimise-store = true;
-    };
-    gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 7d -d";
-    };
-    optimise.automatic = true;
-  };
+  imports = [
+    ./utilities.nix
+    ./nix-conf.nix
+  ];
 
   networking.hostName = "${hostname}";
   time.timeZone = timezone;
