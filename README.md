@@ -7,13 +7,13 @@ rewrite of my nixos flake with hopefully better structuring and modularity
 - (quater-progress) reintegrate file paths and arguments to work together
 
 # todo: migrate files below
-[X] flake stuff (flake.nix & flake.lock)
+- [X] flake stuff (flake.nix & flake.lock)
 
-[X] hardware configs (hardware/scans)
-[X] nixos system
-[X] base nix configs
-[X] apps list
-[X] user config (not hm)
+- [X] hardware configs (hardware/scans)
+- [X] nixos system
+- [X] base nix configs
+- [X] apps list
+- [X] user config (not hm)
 
-[ ] home manager config
-[ ] rice config (everything in /rice)
+- [ ] home manager config
+- [ ] rice config (everything in /rice)
