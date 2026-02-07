@@ -5,6 +5,7 @@ rewrite of my nixos flake with hopefully better structuring and modularity
 - (progress) migrate files to this repository in the modules folder
 - (half-progress) split the files into little chunks for 1 specific purposes per file
 - (quater-progress) reintegrate file paths and arguments to work together
+- test the final config in my system
 
 # todo: migrate files below
 - [X] flake stuff (flake.nix & flake.lock)

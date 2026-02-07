@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{ pkgs, ... }: {
   imports = [
     ./misc/battery-power.nix
     ./misc/power-button.nix
@@ -11,11 +10,11 @@
     ./core/tpm.nix
   ];
 
-  hardware.bluetooth.enable = true;
-
   boot = {
     kernelPackages = pkgs.linuxPackages;
     kernel.sysctl."vm.laptop_mode" = 5;
     initrd.availableKernelModules = [ "thinkpad_acpi" ];
   };
+  hardware.bluetooth.enable = true;
+  services.hardware.bolt.enable = true;
 }
