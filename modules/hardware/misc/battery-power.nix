@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{ pkgs, ... }: {
   powerManagement.powertop.enable = true;
 
   services = {

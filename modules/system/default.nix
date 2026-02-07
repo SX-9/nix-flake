@@ -1,14 +1,14 @@
 { pkgs, locale, ... }: {
   imports = [
+    ./core/virtualization.nix
+    ./core/bootloader.nix
+    ./core/filesystem.nix
+    ./core/network.nix
+    ./core/kernel.nix
+    ./core/user.nix
+    ./misc/programs.nix
+    ./misc/desktop.nix
     ./base.nix
-    ./network.nix
-    ./user.nix
-    ./kernel.nix
-    ./bootloader.nix
-    ./filesystem.nix
-    ./virtualization.nix
-    ./desktop.nix
-    ./programs.nix
   ];
 
   i18n.defaultLocale = locale;

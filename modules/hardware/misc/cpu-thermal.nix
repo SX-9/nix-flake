@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{ ... }: {
   services = {
     thermald.enable = true;
     throttled.enable = true;
@@ -15,9 +14,6 @@
           governor = "powersave";
           energy_performance_preference = "balance_power";
           turbo = "never";
-          enable_thresholds = "true";
-          start_threshold = "80";
-          stop_threshold = "85";
         };
       };
     };
@@ -29,9 +25,6 @@
         [ 7                  65 75  ]
         [ "level full-speed" 75 100 ]
       ];
-      # sensors = [
-      #   { type = "hwmon"; query = "/sys/devices/platform/coretemp.0/hwmon"; }
-      # ];
     };
   };
 }

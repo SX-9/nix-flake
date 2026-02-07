@@ -1,8 +1,8 @@
 { hostname, timezone, ... }: {
   system.stateVersion = "24.11";
   imports = [
-    ./utilities.nix
-    ./nix-conf.nix
+    ./misc/utilities.nix
+    ./misc/nix-conf.nix
   ];
 
   networking.hostName = "${hostname}";

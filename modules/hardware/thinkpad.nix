@@ -1,35 +1,21 @@
 { pkgs, ... }:
 {
   imports = [
-    ./tzupdate.nix
-    ./hibernation.nix
-    ./igpu.nix
-    ./cpu-thermal.nix
-    ./battery-power.nix
-    ./power-button.nix
+    ./misc/battery-power.nix
+    ./misc/power-button.nix
+    ./misc/cpu-thermal.nix
+    ./misc/tzupdate.nix
+    ./core/hibernation.nix
+    ./core/firmware.nix
+    ./core/igpu.nix
+    ./core/tpm.nix
   ];
 
-  security = {
-    tpm2 = {
-      enable = true;
-      pkcs11.enable = true;
-      tctiEnvironment.enable = true;
-    };
-  };
-
-  hardware = {
-    enableRedistributableFirmware = true; # T480 WiFi firmware fix
-    bluetooth = {
-      enable = true;
-      powerOnBoot = true;
-    };
-  };
+  hardware.bluetooth.enable = true;
 
   boot = {
     kernelPackages = pkgs.linuxPackages;
     kernel.sysctl."vm.laptop_mode" = 5;
     initrd.availableKernelModules = [ "thinkpad_acpi" ];
   };
-
-  services.fwupd.enable = true;
 }
