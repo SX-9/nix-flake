@@ -64,7 +64,6 @@
 
       bindl = [
         ", switch:on:Lid Switch, exec, systemctl suspend"
-        ", PRINT, exec, hyprshot -m region -o ~/Pictures/Screenshots"
         "SUPER, SPACE, exec, playerctl play-pause"
         "SUPER, M, exec, wlogout"
         "SUPER, TAB, exec, pkill -SIGUSR1 waybar"
@@ -80,10 +79,10 @@
       ];
       
       bind = [
+        ",XF86Favorites, togglespecialworkspace, x"
+        ",XF86Bluetooth, exec, [float; size 75%] uwsm app -- blueman-manager"
+        ",XF86Keyboard, exec, hyprctl dispatch submap reset"
         # ",XF86Tools, exec, "
-        # ",XF86Bluetooth, exec, "
-        # ",XF86Keyboard, exec, "
-        # ",XF86Favorites, exec, "
 
         ",XF86Display, exec, [float; size 75%] uwsm app -- nwg-displays"
         "CTRL ALT, DELETE, exec, wlogout"
@@ -101,6 +100,7 @@
 
         "SUPER SHIFT, S, exec, hyprshot -m region -o ~/Pictures/Screenshots"
         "ALT, PRINT, exec, hyprshot -m output -o ~/Pictures/Screenshots"
+        ", PRINT, exec, hyprshot -m region -o ~/Pictures/Screenshots"
 
         "SUPER, R, exec, rofi -show drun -show-icons -display-drun '' -run-command \"uwsm app -- {cmd}\""
         "SUPER, V, exec, rofi -modi clipboard:cliphist-rofi-img -show clipboard -show-icons"

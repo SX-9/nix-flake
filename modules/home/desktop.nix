@@ -20,7 +20,7 @@
   home = {
     packages = with pkgs; [
       playerctl brightnessctl
-      networkmanagerapplet
+      networkmanagerapplet tailscale-systray
       qt6Packages.qt6ct kdePackages.qtstyleplugin-kvantum
       nwg-displays
       lxqt.pcmanfm-qt

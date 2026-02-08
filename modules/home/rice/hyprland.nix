@@ -141,10 +141,10 @@
         "no_anim on, match:namespace selection" # hyprshot overlay
         "animation fade, match:namespace swww-daemon"
         "animation fade, match:namespace logout_dialog"
-        "above_lock false, match:namespace waybar"
-        "above_lock true, match:namespace notifications"
-        "above_lock true, match:namespace selection"
-        "above_lock true, match:namespace logout_dialog"
+        "above_lock 1, match:namespace waybar"
+        "above_lock 2, match:namespace notifications"
+        "above_lock 2, match:namespace selection"
+        "above_lock 2, match:namespace logout_dialog"
       ];
 
       windowrule = [
