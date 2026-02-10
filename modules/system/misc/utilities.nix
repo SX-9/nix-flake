@@ -28,6 +28,8 @@
     blueman
     shared-mime-info
     usbutils
+    
+    hplipWithPlugin
 
     android-tools
     scrcpy

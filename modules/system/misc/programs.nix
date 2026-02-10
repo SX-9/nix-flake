@@ -8,7 +8,10 @@
     };
     printing = {
       enable = true;
-      drivers = with pkgs; [ hplip ];
+      drivers = with pkgs; [
+        hplip 
+        hplipWithPlugin
+      ];
     };
   };
 
