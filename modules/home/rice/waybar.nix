@@ -45,8 +45,8 @@
           interval = 1;
           format = " {usage:2}% {avg_frequency}GHz";
           on-click = "auto-cpufreq-gtk";
-          on-click-right = "pkexec systemctl restart thermald throttled && notify-send ${hostname} 'CPU Underclocking Restarted'";
-          on-click-middle = "pkexec systemctl stop thermald throttled && notify-send ${hostname} 'CPU Underclocking Stopped'";
+          on-click-right = "pkexec tlp power-saver && notify-send ${hostname} \"TLP set to: $(tlp-stat -s | grep 'Power profile' | awk -F '=' '{print $2}' | xargs)\"";
+          on-click-middle = "pkexec tlp start && notify-send ${hostname} \"TLP set to: $(tlp-stat -s | grep 'Power profile' | awk -F '=' '{print $2}' | xargs)\"";
         };
         "memory" = {
           states = {

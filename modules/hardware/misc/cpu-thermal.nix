@@ -1,19 +1,35 @@
 { ... }: {
   services = {
-    thermald.enable = true;
+    thermald.enable = false;
     throttled.enable = true;
     tlp = {
       enable = true;
       settings = {
-        CPU_SCALING_GOVERNOR_ON_AC = "performance";
-        CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
-        CPU_BOOST_ON_AC = "1";
+        TLP_DEFAULT_MODE = "BAL";
         
-        CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
-        CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
-        CPU_BOOST_ON_BAT = "0";
-        CPU_MAX_FREQ_ON_BAT = "1500000";
-        CPU_MIN_FREQ_ON_BAT = "400000";
+        CPU_SCALING_GOVERNOR_ON_PRF = "performance";
+        CPU_ENERGY_PERF_POLICY_ON_PRF = "performance";
+        CPU_BOOST_ON_PRF = "1";
+        PLATFORM_PROFILE_ON_PRF = "performance";
+        
+        CPU_SCALING_GOVERNOR_ON_BAL = "powersave";
+        CPU_ENERGY_PERF_POLICY_ON_BAL = "balance_power";
+        CPU_BOOST_ON_BAL = "0";
+        PLATFORM_PROFILE_ON_BAL = "balanced";
+        
+        CPU_SCALING_GOVERNOR_ON_SAV = "powersave";
+        CPU_ENERGY_PERF_POLICY_ON_SAV = "power";
+        CPU_BOOST_ON_SAV = "0";
+        CPU_MAX_FREQ_ON_SAV = "1200000";
+        CPU_MIN_FREQ_ON_SAV = "400000";
+        CPU_MIN_PERF_ON_SAV = "40";
+        CPU_MAX_PERF_ON_SAV = "80";
+        PLATFORM_PROFILE_ON_SAV = "low-power";
+        MEM_SLEEP_ON_SAV = "deep";
+        
+        WOL_DISABLE = "N";
+        DEVICES_TO_DISABLE_ON_STARTUP = "bluetooth wwan";
+        DEVICES_TO_ENABLE_ON_STARTUP = "wifi";
         
         START_CHARGE_THRESH_BAT0 = "80";
         STOP_CHARGE_THRESH_BAT0 = "85";
