@@ -258,9 +258,9 @@
         font-weight: normal;
       }
 
-      .critical, .muted, .performance { color: @red; }
-      .warning, .urgent, .disabled, .disconnected, .paused { color: @yellow; }
-      .charging, .plugged, .power-saver { color: @green; }
+      .critical, .muted, .performance { border-color: @red; color: @red; }
+      .warning, .urgent, .disabled, .disconnected, .paused { border-color: @yellow; color: @yellow; }
+      .charging, .plugged, .power-saver { border-color: @green; color: @green; }
     '';
   };
 }

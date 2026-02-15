@@ -21,12 +21,14 @@
       autocd = true;
       syntaxHighlighting.enable = true;
       envExtra = ''
-        NIXPKGS_ALLOW_UNFREE=1
-        WINEPREFIX="~/.wine"
-        WINEARCH="win64"
-        DISPLAY=":0"
-        EDITOR="nvim"
-        PORT="3000"
+        export NIXPKGS_ALLOW_UNFREE=1
+        export NIXPKGS_ALLOW_INSECURE=1
+        export NH_FLAKE=${flake-path}
+        export WINEPREFIX="~/.wine"
+        export WINEARCH="win64"
+        export DISPLAY=":0"
+        export EDITOR="nvim"
+        export PORT="3000"
       '';
       shellAliases = {
         "cd-gvfs" = "cd /run/user/$(id -u)/gvfs";
