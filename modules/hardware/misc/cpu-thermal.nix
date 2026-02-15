@@ -2,20 +2,31 @@
   services = {
     thermald.enable = false;
     throttled.enable = true;
+    power-profiles-daemon.enable = true; # replacement for tlp and auto-cpufreq due to bugs
     tlp = {
-      enable = true;
+      enable = false; # buggy and inconsistent with frequency scaling
       settings = {
         TLP_DEFAULT_MODE = "BAL";
         
         CPU_SCALING_GOVERNOR_ON_PRF = "performance";
         CPU_ENERGY_PERF_POLICY_ON_PRF = "performance";
         CPU_BOOST_ON_PRF = "1";
+        CPU_MAX_FREQ_ON_PRF = "3600000";
+        CPU_MIN_FREQ_ON_PRF = "100000";
+        CPU_MIN_PERF_ON_PRF = "40";
+        CPU_MAX_PERF_ON_PRF = "100";
         PLATFORM_PROFILE_ON_PRF = "performance";
+        MEM_SLEEP_ON_PRF = "s2idle";
         
         CPU_SCALING_GOVERNOR_ON_BAL = "powersave";
         CPU_ENERGY_PERF_POLICY_ON_BAL = "balance_power";
         CPU_BOOST_ON_BAL = "0";
+        CPU_MAX_FREQ_ON_BAL = "1700000";
+        CPU_MIN_FREQ_ON_BAL = "800000";
+        CPU_MIN_PERF_ON_BAL = "40";
+        CPU_MAX_PERF_ON_BAL = "80";
         PLATFORM_PROFILE_ON_BAL = "balanced";
+        MEM_SLEEP_ON_BAL = "s2idle";
         
         CPU_SCALING_GOVERNOR_ON_SAV = "powersave";
         CPU_ENERGY_PERF_POLICY_ON_SAV = "power";
@@ -39,7 +50,7 @@
       };
     };
     auto-cpufreq = {
-      enable = false; # replaced with tlp until fix: https://github.com/AdnanHodzic/auto-cpufreq/issues/906
+      enable = false; # wait for fix: https://github.com/AdnanHodzic/auto-cpufreq/issues/906
       settings = {
         charger = {
           governor = "performance";
