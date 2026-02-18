@@ -25,6 +25,7 @@
       nwg-displays
       lxqt.pcmanfm-qt
       hyprshot wl-clipboard cliphist
+      hyprshutdown
     ];
   };
 }
