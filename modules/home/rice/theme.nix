@@ -1,10 +1,10 @@
-{ lib, pkgs, ctp-opt, ... }: {
+{ lib, pkgs, ctp-opt, rice, ... }: {
   catppuccin = {
+    enable = true;
     hyprlock.useDefaultConfig = false;
-    hyprland.accent = ctp-opt.primary;
+    
     flavor = ctp-opt.flavor;
     accent = ctp-opt.accent;
-    enable = true;
   };
   
   dconf = {
@@ -27,7 +27,7 @@
       package = pkgs.gnome-themes-extra;
     };
   };
-
+  
   qt = {
     enable = true;
     platformTheme.name = "kvantum";
@@ -36,6 +36,17 @@
       package = pkgs.catppuccin-kvantum.override {
         variant = ctp-opt.flavor;
         accent = ctp-opt.accent;
+      };
+    };
+    qt6ctSettings = {
+      Appearance = {
+        style = "kvantum";
+        icon_theme = "Papirus-Dark";
+        standar_dialogs = "xdgdesktopportal";
+      };
+      Fonts = {
+        fixed = "${rice.font},12";
+        general = "${rice.font},12";
       };
     };
   };

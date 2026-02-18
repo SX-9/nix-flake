@@ -5,8 +5,8 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
-    systemd.enable = false;
     package = pkgs.hyprland; # inputs.hl.packages."${pkgs.system}".hyprland;
+    systemd.enable = false;
     xwayland.enable = true;
     settings = {
       debug = {
