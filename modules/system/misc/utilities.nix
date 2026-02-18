@@ -47,6 +47,7 @@
     netcat
     p7zip
     stress
+    stress-ng
     wakeonlan
     coreutils-full
     traceroute
