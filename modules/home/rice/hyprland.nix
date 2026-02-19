@@ -141,6 +141,7 @@
         "no_anim on, match:namespace selection" # hyprshot overlay
         "animation fade, match:namespace swww-daemon"
         "animation fade, match:namespace logout_dialog"
+        "animation fade, match:namespace hyprshutdown"
         "above_lock 1, match:namespace waybar"
         "above_lock 2, match:namespace notifications"
         "above_lock 2, match:namespace selection"
