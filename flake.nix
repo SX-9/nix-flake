@@ -24,7 +24,15 @@
       inherit inputs;
     } // import ./lib/options.nix;
 
-    nixosConfigForHost = host: inputs.nixpkgs.lib.nixosSystem {
+    nixosConfig = host: inputs.nixpkgs.lib.nixosSystem {
+      inherit pkgs;
+      specialArgs = args;
+      modules = [
+        ./hosts/${host}/config.nix
+      ];
+    };
+    
+    nixosConfigWithHome = host: inputs.nixpkgs.lib.nixosSystem {
       inherit pkgs;
       specialArgs = args;
       modules = [
@@ -43,7 +51,8 @@
     };
   in  {
     nixosConfigurations = {
-      thinkpad = nixosConfigForHost "thinkpad";
+      thinkpad = nixosConfigWithHome "thinkpad";
+      homelab = nixosConfig "homelab";
     };
   };
 }
