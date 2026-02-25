@@ -103,6 +103,7 @@
         ", PRINT, exec, hyprshot -m region -o ~/Pictures/Screenshots"
 
         "SUPER, R, exec, rofi -show drun -show-icons -display-drun '' -run-command \"uwsm app -- {cmd}\""
+        "SUPER, RETURN, exec, rofi -show window -show-icons -drun-display '' -window-format '{c} {t}'"
         "SUPER, V, exec, rofi -modi clipboard:cliphist-rofi-img -show clipboard -show-icons"
         # "SUPER, B, exec, rofi -show calc -modi calc -no-show-match -no-sort"
 
