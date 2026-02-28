@@ -23,13 +23,16 @@
     ];
   };
 
-  services.displayManager.sddm = {
-    enable = enable-dm;
-    wayland.enable = true;
-    package = pkgs.kdePackages.sddm;
-    extraPackages = with pkgs.kdePackages; [
-      qtmultimedia qtsvg
-    ];
+  services = {
+    resolved.enable = true;
+    displayManager.sddm = {
+      enable = enable-dm;
+      wayland.enable = true;
+      package = pkgs.kdePackages.sddm;
+      extraPackages = with pkgs.kdePackages; [
+        qtmultimedia qtsvg
+      ];
+    };
   };
 
   environment = {

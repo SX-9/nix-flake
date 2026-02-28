@@ -24,7 +24,5 @@
       enable = true;
       nssmdns4 = true;
     };
-    cloudflare-warp.enable = true;
-    resolved.enable = true;
   };
 }
