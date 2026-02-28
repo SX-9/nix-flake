@@ -1,4 +1,22 @@
 { pkgs, git, rice, ... }: {
+  home.sessionVariables = {
+    EDITOR = "nvim";
+    BROWSER = "brave";
+    TERMINAL = "kitty";
+  };
+
+  home.packages = with pkgs; [
+    go
+    bun
+    # nodejs # pkgs.buildEnv error: two given paths contain a conflicting subpath
+    nodePackages.npm
+    nodePackages.pnpm
+    nodePackages.yarn
+    python314
+    arduino-cli
+    esptool
+  ];
+
   programs = {
     tmux.enable = true;
     vim.enable = true;
