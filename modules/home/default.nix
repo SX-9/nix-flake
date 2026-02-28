@@ -1,6 +1,5 @@
 { username, ... }: {
   imports = [
-    ./core/apps.nix
     ./core/cli.nix
     ./core/zsh.nix
   ];

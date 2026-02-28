@@ -11,6 +11,7 @@
     ./rice/theme.nix
     ./rice/keybinds.nix
     ./misc/kde-connect.nix
+    ./core/apps.nix
     ./core/zed.nix
     ./core/xdg.nix
   ];
