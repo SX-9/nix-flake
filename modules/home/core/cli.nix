@@ -92,6 +92,7 @@
       enable = true;
       settings = {
         pull.rebase = "true";
+        credential.helper = "cache --timeout=3600";
         user = {
           name = git.user;
           email = git.email;
