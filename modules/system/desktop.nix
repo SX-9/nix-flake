@@ -3,6 +3,7 @@
     ./misc/programs.nix
     ./misc/graphics.nix
     ./misc/theme.nix
+    ./misc/wol.nix
     ./base.nix
   ];
 
