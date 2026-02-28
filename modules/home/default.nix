@@ -1,9 +1,6 @@
 { username, ... }: {
   imports = [
-    ./misc/kde-connect.nix
     ./core/apps.nix
-    ./core/zed.nix
-    ./core/xdg.nix
     ./core/cli.nix
     ./core/zsh.nix
   ];

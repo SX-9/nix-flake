@@ -49,10 +49,22 @@
         }
       ];
     };
+    
+    homeConfig = host: inputs.hm.lib.homeManagerConfiguration {
+      inherit pkgs;
+      modules = [
+        ./hosts/${host}/home.nix
+        inputs.ctp.homeModules.catppuccin
+      ];
+    };
   in  {
     nixosConfigurations = {
       thinkpad = nixosConfigWithHome "thinkpad";
       homelab = nixosConfig "homelab";
+      bootstrap = nixosConfig "bootstrap";
+    };
+    homeConfigurations = {
+      bootstrap = homeConfig "bootstrap";
     };
   };
 }

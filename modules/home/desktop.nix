@@ -10,6 +10,9 @@
     ./rice/cursor.nix
     ./rice/theme.nix
     ./rice/keybinds.nix
+    ./misc/kde-connect.nix
+    ./core/zed.nix
+    ./core/xdg.nix
   ];
 
   services = {
