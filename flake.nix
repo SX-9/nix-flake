@@ -26,7 +26,7 @@
 
     nixosConfig = host: inputs.nixpkgs.lib.nixosSystem {
       inherit pkgs;
-      specialArgs = args;
+      specialArgs = args // { hostname = host; };
       modules = [
         ./hosts/${host}/config.nix
       ];
@@ -34,16 +34,14 @@
     
     nixosConfigWithHome = host: inputs.nixpkgs.lib.nixosSystem {
       inherit pkgs;
-      specialArgs = {
-        hostname = host;
-      } // args;
+      specialArgs = args // { hostname = host; };
       modules = [
         ./hosts/${host}/config.nix
         inputs.ctp.nixosModules.catppuccin
         inputs.hm.nixosModules.home-manager
         {
           home-manager = {
-            extraSpecialArgs = args;
+            extraSpecialArgs = args // { hostname = host; };
             backupFileExtension = ".hm-backup";
             users.${args.username} = import ./hosts/${host}/home.nix;
             sharedModules = [ inputs.ctp.homeModules.catppuccin ];
