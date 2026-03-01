@@ -35,7 +35,7 @@
           [ "server.dns.${homelab.domain}"     "10.3.14.69"                 ]
           [ "home.dns.${homelab.domain}"       "10.3.14.235"                ]
           [ "nas.dns.${homelab.domain}"        "10.3.14.217"                ]
-          [ "proxy.${homelab.domain}"          "10.3.14.120"                ]
+          [ "proxy.${homelab.domain}"          "10.3.14.215"                ]
           [ "*.proxy.${homelab.domain}"        "proxy.${homelab.domain}"    ]
           [ "lancache.steamcontent.com"        "main.dns.${homelab.domain}" ]
           [ "steam.cache.lancache.net"         "main.dns.${homelab.domain}" ]
