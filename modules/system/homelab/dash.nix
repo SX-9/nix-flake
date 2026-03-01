@@ -56,6 +56,7 @@
     [ "PocketID" "authentik" "https://auth.proxy.satr14.my.id" "http://localhost:1411/" ]
     [ "AdGuardHome" "adguard" "https://dns.proxy.satr14.my.id" "http://localhost:8088/" ]
     [ "ApacheHTTPD" "apache" "https://cdn.proxy.satr14.my.id" "http://localhost:3000/" ]
+    [ "Forgejo" "forgejo" "https://git.proxy.satr14.my.id" "http://localhost:5080/" ]
   ];
   bookmarks = [
     [ "Tailscale" "tailscale" "https://login.tailscale.com/" ]
