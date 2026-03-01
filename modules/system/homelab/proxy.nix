@@ -1,8 +1,10 @@
 { homelab, lib, ... }: let
   base = "proxy.${homelab.domain}";
   proxyMappings = {
-    "dns" = { dest = "http://localhost:8088"; auth = true; };
-    "cdn" = { dest = "http://localhost:3000"; auth = false; };
+    "dns"  = { dest = "http://localhost:8088"; auth = true; };
+    "cdn"  = { dest = "http://localhost:3000"; auth = false; };
+    "auth" = { dest = "http://localhost:1411"; auth = true; };
+    "@"    = { dest = "http://localhost:5070"; auth = false; };
   };
 in {
   users.users.nginx.extraGroups = [ "acme" ];
@@ -29,7 +31,7 @@ in {
           useACMEHost = base;
           locations."/".return = "404";
         };
-      } // lib.mapAttrs (subdomain: cfg: lib.nameValuePair (if subdomain == "@" then base else "${subdomain}.${base}") {
+      } // lib.mapAttrs' (subdomain: cfg: lib.nameValuePair (if subdomain == "@" then base else "${subdomain}.${base}") {
         useACMEHost = base;
         forceSSL = true;
         
