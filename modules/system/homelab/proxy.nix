@@ -25,9 +25,11 @@ in {
       virtualHosts = {
         "_" = {
           default = true;
+          forceSSL = true;
+          useACMEHost = base;
           locations."/".return = "404";
         };
-      } // lib.mapAttrs' (subdomain: cfg: lib.nameValuePair (if subdomain == "@" then base else "${subdomain}.${base}") {
+      } // lib.mapAttrs (subdomain: cfg: lib.nameValuePair (if subdomain == "@" then base else "${subdomain}.${base}") {
         useACMEHost = base;
         forceSSL = true;
         
