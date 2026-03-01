@@ -3,7 +3,7 @@
   proxyMappings = {
     "dns"  = { dest = "http://localhost:8088"; auth = true; };
     "cdn"  = { dest = "http://localhost:3000"; auth = false; };
-    "auth" = { dest = "http://localhost:1411"; auth = true; };
+    "auth" = { dest = "http://localhost:1411"; auth = false; };
     "@"    = { dest = "http://localhost:5070"; auth = false; };
   };
 in {

@@ -1,4 +1,4 @@
-{ timezone, ... }: let 
+{ timezone, homelab, ... }: let 
   rss = [
     "https://www.raspberrypi.com/news/feed/"
     "https://www.jeffgeerling.com/blog.xml"
@@ -28,17 +28,16 @@
     "UCYO_jab_esuFRV4b17AJtAw" # 3Blue1Brown
   ];
   gh = [
-    "pi-hole/pi-hole"
     "tailscale/tailscale"
-    "nodejs/node"
-    "denoland/deno"
-    "oven-sh/bun"
     "glanceapp/glance"
+    "nixos/nixpkgs"
     "ollama/ollama"
+    "nginx/nginx"
+    "oven-sh/bun"
   ];
   search = [
-    [ "CVE" "!cve" "https://securityvulnerability.io/vulnerability/CVE-{QUERY}" ]
     [ "Website" "!!" "https://{QUERY}" ]
+    [ "CVE" "!cve" "https://securityvulnerability.io/vulnerability/CVE-{QUERY}" ]
     [ "YouTube" "!yt" "https://www.youtube.com/results?search_query={QUERY}" ]
     [ "GitHub" "!gh" "https://github.com/search?q={QUERY}" ]
     [ "Nix Packages" "!nix" "https://search.nixos.org/packages?channel=unstable&type=packages&query={QUERY}" ]
@@ -49,15 +48,14 @@
   monitor = [
     [ "Hypervisor" "https://10.3.14.69:8006/" ]
     [ "Router" "http://10.3.14.1:80/" ]
-    [ "DNS" "http://10.3.14.42:8088/" ]
-    [ "Proxy" "http://10.3.14.120:81/" ]
-    [ "NAS" "http://10.3.14.217/" ]
-    [ "CDN" "http://10.3.14.217:3000/" ]
+    [ "DNS" "http://localhost:8088/" ]
+    [ "Proxy" "https://localhost:443/" ]
+    [ "CDN" "http://localhost:3000/" ]
   ];
   services = [
-    [ "PocketID" "authentik" "https://auth.satr14.my.id" "http://main.dns.satr14.my.id:1411/" ]
-    [ "2FAuth" "authy" "https://2fa.satr14.my.id" "http://main.dns.satr14.my.id:8090/" ]
-    [ "VaultWarden" "vaultwarden" "https://pass.proxy.satr14.my.id" "http://main.dns.satr14.my.id:8060/" ]
+    [ "PocketID" "authentik" "https://auth.proxy.satr14.my.id" "http://localhost:1411/" ]
+    [ "AdGuardHome" "adguard" "https://dns.proxy.satr14.my.id" "http://localhost:8088/" ]
+    [ "ApacheHTTPD" "apache" "https://cdn.proxy.satr14.my.id" "http://localhost:3000/" ]
   ];
   bookmarks = [
     [ "Tailscale" "tailscale" "https://login.tailscale.com/" ]
