@@ -178,23 +178,6 @@ in {
           ];
         }
         {
-          name = "Start";
-          width = "slim";
-          center-vertically = true;
-          columns = [
-            {
-              size = "full";
-              widgets = [
-                {
-                  type = "to-do";
-                  id = "tasks";
-                  hide-header = true;
-                }
-              ];
-            }
-          ];
-        }
-        {
           name = "Dashboard";
           show-mobile-header = true;
           columns = [
