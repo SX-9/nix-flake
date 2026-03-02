@@ -1,14 +1,6 @@
 { lib, ... }: let
   stacks-dir = "/opt/stacks";
 in {
-  virtualisation = {
-    oci-containers.backend = "docker";
-    docker = {
-      enable = true;
-      autoPrune.enable = true;
-    };
-  };
-
   virtualisation.oci-containers.containers."dockge" = {
     image = "louislam/dockge:latest";
     environment = {

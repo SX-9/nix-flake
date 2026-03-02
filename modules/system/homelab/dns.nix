@@ -1,16 +1,14 @@
-{ lib, homelab, ... }: let
+{ homelab, ... }: let
   rewrites = [
     [ "router.dns.${homelab.domain}"     "10.3.14.1"                  ]
-    [ "main.dns.${homelab.domain}"       "10.3.14.42"                 ]
-    [ "websites.dns.${homelab.domain}"   "10.3.14.36"                 ]
-    [ "games.dns.${homelab.domain}"      "10.3.14.37"                 ]
-    [ "media.dns.${homelab.domain}"      "10.3.14.55"                 ]
     [ "workspace.dns.${homelab.domain}"  "10.3.14.57"                 ]
     [ "server.dns.${homelab.domain}"     "10.3.14.69"                 ]
     [ "home.dns.${homelab.domain}"       "10.3.14.235"                ]
-    [ "nas.dns.${homelab.domain}"        "10.3.14.217"                ]
-    [ "proxy.${homelab.domain}"          "10.3.14.215"                ]
+    
+    [ "main.dns.${homelab.domain}"       "10.3.14.215"                ] # this machine
+    [ "proxy.${homelab.domain}"          "main.dns.${homelab.domain}" ]
     [ "*.proxy.${homelab.domain}"        "proxy.${homelab.domain}"    ]
+    
     [ "lancache.steamcontent.com"        "main.dns.${homelab.domain}" ]
     [ "steam.cache.lancache.net"         "main.dns.${homelab.domain}" ]
   ];
@@ -68,10 +66,5 @@ in {
       filters = map (url: { enabled = true; url = url; }) blacklist;
       whitelist_filters = map (url: { enabled = true; url = url; }) whitelist;
     };
-  };
-  
-  networking = {
-    networkmanager.dns = "none";
-    nameservers = lib.mkForce [ "127.0.0.1" ];
   };
 }
