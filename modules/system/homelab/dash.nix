@@ -216,6 +216,12 @@ in {
               size = "full";
               widgets = [
                 {
+                  type = "server-stats";
+                  servers = [{
+                    type = "local";
+                  }];
+                }
+                {
                   type = "monitor";
                   cache = "1m";
                   title = "Services";
