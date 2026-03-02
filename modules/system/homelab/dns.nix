@@ -1,4 +1,4 @@
-{ homelab, ... }: let
+{ lib, homelab, ... }: let
   rewrites = [
     [ "router.dns.${homelab.domain}"     "10.3.14.1"                  ]
     [ "main.dns.${homelab.domain}"       "10.3.14.42"                 ]
@@ -59,10 +59,19 @@ in {
         rewrites_enabled = true;
         filtering_enabled = true;
         safe_search.enabled = true;
-        rewrites = map (e: { enabled = true; domain = builtins.elemAt e 0; answer = builtins.elemAt e 1; }) rewrites;
+        rewrites = map (e: {
+          enabled = true;
+          domain = builtins.elemAt e 0;
+          answer = builtins.elemAt e 1;
+        }) rewrites;
       };
       filters = map (url: { enabled = true; url = url; }) blacklist;
       whitelist_filters = map (url: { enabled = true; url = url; }) whitelist;
     };
+  };
+  
+  networking = {
+    networkmanager.dns = "none";
+    nameservers = lib.mkForce [ "127.0.0.1" ];
   };
 }
