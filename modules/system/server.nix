@@ -1,5 +1,6 @@
-{ lib, ... }: {
+{ ... }: {
   imports = [
+    ./homelab/containers.nix
     ./homelab/share.nix
     ./homelab/proxy.nix
     ./homelab/dash.nix
