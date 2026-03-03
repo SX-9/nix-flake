@@ -9,8 +9,8 @@
     [ "proxy.${homelab.domain}"          "main.dns.${homelab.domain}" ]
     [ "*.proxy.${homelab.domain}"        "proxy.${homelab.domain}"    ]
     
-    [ "lancache.steamcontent.com"        "main.dns.${homelab.domain}" ]
-    [ "steam.cache.lancache.net"         "main.dns.${homelab.domain}" ]
+    # [ "lancache.steamcontent.com"        "main.dns.${homelab.domain}" ]
+    # [ "steam.cache.lancache.net"         "main.dns.${homelab.domain}" ]
   ];
   blacklist = [
     "https://adaway.org/hosts.txt"
