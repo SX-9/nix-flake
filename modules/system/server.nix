@@ -1,5 +1,5 @@
-{ config, lib, ... }: {
-  imports = lib.mkIf (config.specialisation != {}) [
+{ lib, ... }: {
+  imports = [
     ./homelab/containers.nix
     ./homelab/gallery.nix
     ./homelab/remote.nix
