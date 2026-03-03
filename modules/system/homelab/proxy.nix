@@ -34,35 +34,35 @@ in {
   };
   
   services.nginx = {
-      enable = true;
-      recommendedProxySettings = true;
-      recommendedTlsSettings = true;
-      virtualHosts = {
-        "_" = {
-          default = true;
-          forceSSL = true;
-          useACMEHost = base;
-          locations."/".return = "404";
-        };
-      } // lib.mapAttrs' (subdomain: cfg: lib.nameValuePair (if subdomain == "@" then base else "${subdomain}.${base}") {
-        useACMEHost = base;
+    enable = true;
+    recommendedProxySettings = true;
+    recommendedTlsSettings = true;
+    virtualHosts = {
+      "_" = {
+        default = true;
         forceSSL = true;
-        
-        locations."/" = {
-          proxyPass = cfg.dest;
-          proxyWebsockets = true;
-          basicAuthFile = if cfg.auth then "/var/lib/nginx/.htpasswd" else null;
-          extraConfig = ''
-            proxy_set_header X-Auth-User $remote_user;
-            proxy_set_header X-Real-IP $remote_addr;
-            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-            proxy_set_header X-Forwarded-Proto $scheme;
-            client_max_body_size 50000M;
-            proxy_read_timeout   600s;
-            proxy_send_timeout   600s;
-            send_timeout         600s;
-          '';
-        };
-      }) proxy-mappings;
-    };
+        useACMEHost = base;
+        locations."/".return = "404";
+      };
+    } // lib.mapAttrs' (subdomain: cfg: lib.nameValuePair (if subdomain == "@" then base else "${subdomain}.${base}") {
+      useACMEHost = base;
+      forceSSL = true;
+      
+      locations."/" = {
+        proxyPass = cfg.dest;
+        proxyWebsockets = true;
+        basicAuthFile = if cfg.auth then "/var/lib/nginx/.htpasswd" else null;
+        extraConfig = ''
+          proxy_set_header X-Auth-User $remote_user;
+          proxy_set_header X-Real-IP $remote_addr;
+          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+          proxy_set_header X-Forwarded-Proto $scheme;
+          client_max_body_size 50000M;
+          proxy_read_timeout   600s;
+          proxy_send_timeout   600s;
+          send_timeout         600s;
+        '';
+      };
+    }) proxy-mappings;
+  };
 }
