@@ -1,5 +1,5 @@
-{ lib, ... }: {
-  imports = [
+{ config, lib, ... }: {
+  imports = lib.mkIf (config.specialisation != {}) [
     ./homelab/containers.nix
     ./homelab/gallery.nix
     ./homelab/media.nix
@@ -12,6 +12,8 @@
     ./homelab/ai.nix
     ./base.nix
   ];
+  
+  specialisation.safe-mode.configuration = {};
   
   virtualisation = {
     oci-containers.backend = "docker";

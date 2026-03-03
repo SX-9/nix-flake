@@ -58,6 +58,7 @@
     [ "ApacheHTTPD" "apache" "https://cdn.proxy.${homelab.domain}" "http://localhost:3000/" ]
     [ "Forgejo" "forgejo" "https://git.proxy.${homelab.domain}" "http://localhost:5080/" ]
     [ "Dockge" "docker" "https://containers.proxy.${homelab.domain}" "http://localhost:5001/" ]
+    [ "Ollama" "ollama" "https://ai.proxy.${homelab.domain}" "http://localhost:8080/" ]
   ];
   bookmarks = [
     [ "Tailscale" "tailscale" "https://login.tailscale.com/" ]
@@ -188,6 +189,22 @@ in {
           show-mobile-header = true;
           columns = [
             {
+              type = "bookmarks";
+              groups = [{
+                links = map (e: {
+                  same-tab = true;
+                  title = builtins.elemAt e 0;
+                  icon = "si:${builtins.elemAt e 1}";
+                  url = builtins.elemAt e 2;
+                }) bookmarks;
+              }];
+            }
+            {
+              type = "to-do";
+              id = "tasks";
+              hide-header = true;
+            }
+            {
               size = "small";
               widgets = [
                 {
@@ -217,9 +234,7 @@ in {
               widgets = [
                 {
                   type = "server-stats";
-                  servers = [{
-                    type = "local";
-                  }];
+                  servers = [{ type = "local"; }];
                 }
                 {
                   type = "monitor";
@@ -232,27 +247,6 @@ in {
                     icon = "si:${builtins.elemAt e 1}";
                     url = builtins.elemAt e 2;
                   }) services;
-                }
-              ];
-            }
-            {
-              size = "small";
-              widgets = [
-                {
-                  type = "bookmarks";
-                  groups = [{
-                    links = map (e: {
-                      same-tab = true;
-                      title = builtins.elemAt e 0;
-                      icon = "si:${builtins.elemAt e 1}";
-                      url = builtins.elemAt e 2;
-                    }) bookmarks;
-                  }];
-                }
-                {
-                  type = "to-do";
-                  id = "tasks";
-                  hide-header = true;
                 }
               ];
             }

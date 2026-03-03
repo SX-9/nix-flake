@@ -1,9 +1,11 @@
 { homelab, lib, ... }: let
   base = "proxy.${homelab.domain}";
   proxy-mappings = {
+    "dns"        = { dest = "http://localhost:8088"; auth = true; };
+    "ai"         = { dest = "http://localhost:8080"; auth = true; };
+    
     "containers" = { dest = "http://localhost:5001"; auth = false; };
     "auth"       = { dest = "http://localhost:1411"; auth = false; };
-    "dns"        = { dest = "http://localhost:8088"; auth = true; };
     "cdn"        = { dest = "http://localhost:3000"; auth = false; };
     "git"        = { dest = "http://localhost:5080"; auth = false; };
     "@"          = { dest = "http://localhost:5070"; auth = false; };
@@ -45,6 +47,7 @@ in {
             proxy_set_header X-Real-IP $remote_addr;
             proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
             proxy_set_header X-Forwarded-Proto $scheme;
+            proxy_set_header X-Auth-User $remote_user;
           '';
         };
       }) proxy-mappings;
