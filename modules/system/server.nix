@@ -1,8 +1,8 @@
 { lib, ... }: {
   imports = [
     ./homelab/containers.nix
-    ./homelab/movies.nix
-    ./homelab/photos.nix
+    ./homelab/gallery.nix
+    ./homelab/media.nix
     ./homelab/share.nix
     ./homelab/proxy.nix
     ./homelab/auth.nix
