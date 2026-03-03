@@ -1,5 +1,5 @@
-{ lib, homelab, ... }: let
-  stacks-dir = "${homelab.disks.data}/dockge/stacks";
+{ lib, ... }: let
+  stacks-dir = "/mnt/data/dockge/stacks";
 in {
   virtualisation.oci-containers.containers."dockge" = {
     image = "louislam/dockge:latest";
@@ -8,7 +8,7 @@ in {
     };
     volumes = [
       "${stacks-dir}:${stacks-dir}:rw"
-      "${homelab.disks.data}/dockge/data:/app/data:rw"
+      "/mnt/data/dockge/data:/app/data:rw"
       "/var/run/docker.sock:/var/run/docker.sock:rw"
     ];
     ports = [
