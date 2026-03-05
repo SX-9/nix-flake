@@ -228,7 +228,6 @@ in {
                 {
                   type = "to-do";
                   id = "tasks";
-                  hide-header = true;
                 }
               ];
             }
@@ -251,6 +250,11 @@ in {
                     url = builtins.elemAt e 2;
                     check-url = builtins.elemAt e 3;
                   }) services;
+                }
+                {
+                  type = "docker-containers";
+                  title = "Containers";
+                  format-container-names = true;
                 }
               ];
             }
