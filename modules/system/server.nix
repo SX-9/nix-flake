@@ -1,12 +1,21 @@
-{ lib, ... }: {
+{ lib, ... }: let
+  ts-flags = [
+    "--advertise-exit-node"
+    "--advertise-routes=10.3.14.0/24,192.168.1.0/24"
+    "--ssh" "--webclient"
+  ];
+in {
   imports = [
+    ./homelab/tunnels.nix
+    ./homelab/mesh.nix
     ./homelab/containers.nix
-    ./homelab/gallery.nix
     ./homelab/remote.nix
+    ./homelab/gallery.nix
     # ./homelab/media.nix # wip
     ./homelab/share.nix
     ./homelab/proxy.nix
     ./homelab/auth.nix
+    ./homelab/pass.nix
     ./homelab/dash.nix
     ./homelab/dns.nix
     ./homelab/git.nix
@@ -16,8 +25,14 @@
     ./base.nix
   ];
 
-  specialisation.safe-mode.configuration = {};
-
+  services.tailscale = {
+    enable = true;
+    authKeyFile = "/mnt/data/tailscale/authkey";
+    useRoutingFeatures = "server";
+    extraUpFlags = ts-flags;
+    extraSetFlags = ts-flags;
+  };
+  
   virtualisation = {
     oci-containers.backend = "docker";
     docker = {
