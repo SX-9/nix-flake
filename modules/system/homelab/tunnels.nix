@@ -3,6 +3,7 @@
     enable = true;
     tunnels.homelab = {
       credentialsFile = "/mnt/data/cloudflared/homelab.json";
+      certificateFile = "/mnt/data/cloudflared/cert.pem";
       default = "http_status:404";
       ingress = {
         "git.${homelab.domain}" = "http://localhost:3000";
