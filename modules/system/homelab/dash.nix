@@ -53,14 +53,15 @@
     [ "Proxy" "https://proxy.${homelab.domain}/" ]
   ];
   services = [
-    [ "PocketID" "authentik" "https://auth.proxy.${homelab.domain}" "http://localhost:1411/" ]
+    [ "PocketID" "authentik" "https://auth.${homelab.domain}" "http://localhost:1411/" ]
+    [ "Forgejo" "forgejo" "https://git.${homelab.domain}" "http://localhost:5080/" ]
     [ "AdGuardHome" "adguard" "https://dns.proxy.${homelab.domain}" "http://localhost:8088/" ]
     [ "ApacheHTTPD" "apache" "https://cdn.proxy.${homelab.domain}" "http://localhost:3000/" ]
-    [ "Forgejo" "forgejo" "https://git.proxy.${homelab.domain}" "http://localhost:5080/" ]
-    [ "Dockge" "docker" "https://containers.proxy.${homelab.domain}" "http://localhost:5001/" ]
-    [ "Ollama" "ollama" "https://ai.proxy.${homelab.domain}" "http://localhost:8080/" ]
-    [ "Guacamole" "apacheguacamole" "https://remote.proxy.${homelab.domain}" "http://localhost:8085/guacamole/" ]
     [ "Immich" "immich" "https://gallery.proxy.${homelab.domain}" "http://localhost:2283/" ]
+    [ "VaultWarden" "vaultwarden" "https://pass.proxy.${homelab.domain}" "http://localhost:8060/" ]
+    [ "Ollama" "ollama" "https://ai.proxy.${homelab.domain}" "http://localhost:8080/" ]
+    [ "Dockge" "docker" "https://containers.proxy.${homelab.domain}" "http://localhost:5001/" ]
+    [ "Guacamole" "apacheguacamole" "https://remote.proxy.${homelab.domain}" "http://localhost:8085/guacamole/" ]
   ];
   bookmarks = [
     [ "Tailscale" "tailscale" "https://login.tailscale.com/" ]
