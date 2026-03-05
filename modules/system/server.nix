@@ -6,11 +6,10 @@
   ];
 in {
   imports = [
-    ./homelab/tunnels.nix
-    ./homelab/mesh.nix
     ./homelab/containers.nix
-    ./homelab/remote.nix
     ./homelab/gallery.nix
+    ./homelab/tunnels.nix
+    ./homelab/remote.nix
     # ./homelab/media.nix # wip
     ./homelab/share.nix
     ./homelab/proxy.nix
