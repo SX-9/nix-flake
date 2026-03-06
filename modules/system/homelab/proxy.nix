@@ -1,7 +1,7 @@
 { homelab, lib, ... }: let
   base = "proxy.${homelab.domain}";
   hosts = {
-    "server"     = { dest = "http://server.dns.${homelab.domain}:8006"; auth = false; };
+    "server"     = { dest = "https://server.dns.${homelab.domain}:8006"; auth = false; };
     "router"     = { dest = "http://router.dns.${homelab.domain}:80"; auth = false; };
     "home"       = { dest = "http://home.dns.${homelab.domain}:8123"; auth = false; };
     "nas"        = { dest = "http://nas.dns.${homelab.domain}:80"; auth = false; };
