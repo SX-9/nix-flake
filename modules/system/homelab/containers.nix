@@ -1,4 +1,4 @@
-{ lib, ... }: let
+{ homelab, lib, ... }: let
   stacks-dir = "/mnt/data/dockge/stacks";
 in {
   virtualisation.oci-containers.containers."dockge" = {
@@ -15,6 +15,13 @@ in {
       "127.0.0.1:5001:5001/tcp"
     ];
     log-driver = "journald";
+    labels = {
+      "glance.name" = "dockge";
+      "glance.icon" = "si:docker";
+      "glance.url" = "http://containers.proxy.${homelab.domain}:5001/";
+      "glance.description" = "Docker Compose Management UI";
+      "glance.hide" = "false";
+    };
   };
   
   systemd.services."docker-dockge" = {
