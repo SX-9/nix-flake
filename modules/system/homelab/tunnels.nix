@@ -32,6 +32,6 @@ in {
     script = lib.concatMapStringsSep "\n" (domain: ''
       echo "Ensuring DNS route for ${domain}..."
       ${pkgs.cloudflared}/bin/cloudflared tunnel --origincert /mnt/data/cloudflared/cert.pem route dns ${homelab.cf-tunnel-id} ${domain} || true
-    '') builtins.attrNames routes;
+    '') (builtins.attrNames routes);
   };
 }
