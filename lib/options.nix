@@ -15,23 +15,24 @@
   
   homelab = rec {
     domain = "satr14.my.id"; # root domain for dns, ssl certs, reverse proxy, etc.
+    cf-tunnel-id = "26318288-cdd7-4e58-904b-c45f10d3e40a";
     disks = {
       share = "/dev/disk/by-uuid/ac61f6c8-ac20-41dd-ba93-41c4a225dc98"; # disk for nas share
       data = "/dev/disk/by-uuid/a5752dd6-092d-484c-969c-2fdc7cb4a5f0"; # disk for app data
     };
     records = [
-      [ "router.dns.${domain}"     "10.3.14.1"                  ]
-      [ "workspace.dns.${domain}"  "10.3.14.57"                 ]
-      [ "server.dns.${domain}"     "10.3.14.69"                 ]
-      [ "home.dns.${domain}"       "10.3.14.235"                ]
+      [ "server.dns.${domain}"     "10.3.14.69"         ]
+      [ "router.dns.${domain}"     "10.3.14.1"          ]
+      [ "home.dns.${domain}"       "10.3.14.235"        ]
+      [ "workspace.dns.${domain}"  "10.3.14.57"         ]
+      [ "old-main.dns.${domain}"   "10.3.14.42"         ] # old main machine for connecting while migrating
       
-      [ "main.dns.${domain}"       "10.3.14.215"                ] # this machine
-      [ "old-main.dns.${domain}"   "10.3.14.42"                 ] # old main machine for connecting while migrating
+      [ "main.dns.${domain}"       "10.3.14.215"        ] # this machine
       [ "proxy.${domain}"          "main.dns.${domain}" ]
       [ "*.proxy.${domain}"        "proxy.${domain}"    ]
       
-      # [ "lancache.steamcontent.com"        "main.dns.${domain}" ]
-      # [ "steam.cache.lancache.net"         "main.dns.${domain}" ]
+      # [ "lancache.steamcontent.com" "main.dns.${domain}" ]
+      # [ "steam.cache.lancache.net" "main.dns.${domain}" ]
     ];
   };
 
