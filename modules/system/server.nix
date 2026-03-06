@@ -1,4 +1,4 @@
-{ lib, ... }: let
+{ lib, homelab, ... }: let
   ts-flags = [
     "--advertise-exit-node"
     "--advertise-routes=10.3.14.0/24,192.168.1.0/24"
@@ -45,5 +45,14 @@ in {
   networking = {
     networkmanager.dns = "none";
     nameservers = lib.mkForce [ "127.0.0.1" ];
+    extraHosts = let
+      isIP = s: builtins.match "[0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+" s != null;
+      ipRecords = builtins.filter (r: isIP (builtins.elemAt r 1)) homelab.records;
+    in builtins.concatStringsSep "\n" (map (r: "${builtins.elemAt r 1} ${builtins.elemAt r 0}") ipRecords);
+  };
+
+  systemd.services.nginx = {
+    after = [ "adguardhome.service" ];
+    wants = [ "adguardhome.service" ];
   };
 }
