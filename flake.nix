@@ -65,7 +65,7 @@
   in  {
     nixosConfigurations = {
       thinkpad = nixosConfigWithHome "thinkpad";
-      homelab = nixosConfig "homelab";
+      homelab = nixosConfigWithHome "homelab";
       bootstrap = nixosConfig "bootstrap";
     };
     homeConfigurations = {
