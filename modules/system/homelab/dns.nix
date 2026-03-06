@@ -1,17 +1,4 @@
 { homelab, ... }: let
-  rewrites = [
-    [ "router.dns.${homelab.domain}"     "10.3.14.1"                  ]
-    [ "workspace.dns.${homelab.domain}"  "10.3.14.57"                 ]
-    [ "server.dns.${homelab.domain}"     "10.3.14.69"                 ]
-    [ "home.dns.${homelab.domain}"       "10.3.14.235"                ]
-    
-    [ "main.dns.${homelab.domain}"       "10.3.14.215"                ] # this machine
-    [ "proxy.${homelab.domain}"          "main.dns.${homelab.domain}" ]
-    [ "*.proxy.${homelab.domain}"        "proxy.${homelab.domain}"    ]
-    
-    # [ "lancache.steamcontent.com"        "main.dns.${homelab.domain}" ]
-    # [ "steam.cache.lancache.net"         "main.dns.${homelab.domain}" ]
-  ];
   blacklist = [
     "https://adaway.org/hosts.txt"
     "https://adguardteam.github.io/HostlistsRegistry/assets/filter_10.txt"
@@ -61,7 +48,7 @@ in {
           enabled = true;
           domain = builtins.elemAt e 0;
           answer = builtins.elemAt e 1;
-        }) rewrites;
+        }) homelab.records;
       };
       filters = map (url: { enabled = true; url = url; }) blacklist;
       whitelist_filters = map (url: { enabled = true; url = url; }) whitelist;

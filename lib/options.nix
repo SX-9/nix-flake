@@ -13,12 +13,26 @@
   swapfile = 8 * 1024; # swapfile size in MB, set to 0 to disable (only used for server, desktop will use swap partition instead)
   resume-dev = "/dev/disk/by-uuid/1721721a-bb5a-4166-a077-9500d30be2ac"; # set to swap partition to enable hibernation, e.g. /dev/disk/by-uuid/1721721a-bb5a-4166-a077-9500d30be2ac
   
-  homelab = {
+  homelab = rec {
     domain = "satr14.my.id"; # root domain for dns, ssl certs, reverse proxy, etc.
     disks = {
       share = "/dev/disk/by-uuid/ac61f6c8-ac20-41dd-ba93-41c4a225dc98"; # disk for nas share
       data = "/dev/disk/by-uuid/a5752dd6-092d-484c-969c-2fdc7cb4a5f0"; # disk for app data
     };
+    records = [
+      [ "router.dns.${domain}"     "10.3.14.1"                  ]
+      [ "workspace.dns.${domain}"  "10.3.14.57"                 ]
+      [ "server.dns.${domain}"     "10.3.14.69"                 ]
+      [ "home.dns.${domain}"       "10.3.14.235"                ]
+      
+      [ "main.dns.${domain}"       "10.3.14.215"                ] # this machine
+      [ "old-main.dns.${domain}"   "10.3.14.42"                 ] # old main machine for connecting while migrating
+      [ "proxy.${domain}"          "main.dns.${domain}" ]
+      [ "*.proxy.${domain}"        "proxy.${domain}"    ]
+      
+      # [ "lancache.steamcontent.com"        "main.dns.${domain}" ]
+      # [ "steam.cache.lancache.net"         "main.dns.${domain}" ]
+    ];
   };
 
   rice = {
