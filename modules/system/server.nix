@@ -6,12 +6,13 @@
   ];
 in {
   imports = [
+    # ./homelab/share.nix # gonna use omv for now
+    
     ./homelab/containers.nix
     ./homelab/gallery.nix
     ./homelab/tunnels.nix
     ./homelab/remote.nix
     ./homelab/media.nix
-    ./homelab/share.nix
     ./homelab/proxy.nix
     ./homelab/auth.nix
     ./homelab/pass.nix

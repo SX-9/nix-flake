@@ -6,9 +6,9 @@
   };
 in {
   fileSystems = {
-    "/mnt/share" = globalOpts // {
-      device = homelab.disks.share;
-    };
+    # "/mnt/share" = globalOpts // {
+    #   device = homelab.disks.share;
+    # };
     "/mnt/data" = globalOpts // {
       device = homelab.disks.data;
     };
