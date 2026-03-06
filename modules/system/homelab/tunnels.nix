@@ -14,23 +14,23 @@ in {
       default = "http_status:404";
       ingress = routes;
     };
-    
-    systemd.services.cloudflared-dns-route = {
-      description = "Sync Cloudflare Tunnel DNS routes";
-      after = [ "network-online.target" ];
-      wants = [ "network-online.target" ];
-      wantedBy = [ "multi-user.target" ];
-      
-      serviceConfig = {
-        RemainAfterExit = true;
-        Type = "oneshot";
-        User = "root";
-      };
+  };
   
-      script = lib.concatMapStringsSep "\n" (domain: ''
-        echo "Ensuring DNS route for ${domain}..."
-        ${pkgs.cloudflared}/bin/cloudflared tunnel --origincert /mnt/data/cloudflared/cert.pem route dns ${homelab.cf-tunnel-id} ${domain} || true
-      '') builtins.attrNames routes;
+  systemd.services.cloudflared-dns-route = {
+    description = "Sync Cloudflare Tunnel DNS routes";
+    after = [ "network-online.target" ];
+    wants = [ "network-online.target" ];
+    wantedBy = [ "multi-user.target" ];
+    
+    serviceConfig = {
+      RemainAfterExit = true;
+      Type = "oneshot";
+      User = "root";
     };
+
+    script = lib.concatMapStringsSep "\n" (domain: ''
+      echo "Ensuring DNS route for ${domain}..."
+      ${pkgs.cloudflared}/bin/cloudflared tunnel --origincert /mnt/data/cloudflared/cert.pem route dns ${homelab.cf-tunnel-id} ${domain} || true
+    '') builtins.attrNames routes;
   };
 }
