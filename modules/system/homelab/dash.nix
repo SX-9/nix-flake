@@ -297,6 +297,7 @@ in {
                   type = "docker-containers";
                   title = "Containers";
                   format-container-names = true;
+                  hide-by-default = true;
                 }
               ];
             }
