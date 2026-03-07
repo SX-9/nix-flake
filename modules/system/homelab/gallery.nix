@@ -1,4 +1,4 @@
-{ homelab, ... }: {
+{ lib, homelab, ... }: {
   users.users.immich.extraGroups = [ "video" "render" ];
 
   services = {
