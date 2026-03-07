@@ -2,7 +2,7 @@
   stacks-dir = "/mnt/data/dockge/stacks";
 in {
   virtualisation.oci-containers.containers."dockge" = {
-    image = "louislam/dockge:latest";
+    image = "louislam/dockge:nightly";
     environment = {
       "DOCKGE_STACKS_DIR" = stacks-dir;
     };
