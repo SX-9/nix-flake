@@ -17,7 +17,7 @@
     domain = "satr14.my.id"; # root domain for dns, ssl certs, reverse proxy, etc.
     cf-tunnel-id = "26318288-cdd7-4e58-904b-c45f10d3e40a";
     disks = {
-      share = "/dev/disk/by-uuid/ac61f6c8-ac20-41dd-ba93-41c4a225dc98"; # disk for nas share
+      gallery = "/dev/disk/by-uuid/834f51c1-90ee-4601-ba76-ef0419198d67"; # disk for photo gallery 
       data = "/dev/disk/by-uuid/a5752dd6-092d-484c-969c-2fdc7cb4a5f0"; # disk for app data
     };
     records = [

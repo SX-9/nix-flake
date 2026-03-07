@@ -1,4 +1,4 @@
-{ ... }: {
+{ homelab, ... }: {
   users.users.immich.extraGroups = [ "video" "render" ];
 
   services = {
@@ -6,9 +6,14 @@
       enable = true;
       port = 2283;
       host = "127.0.0.1";
-      mediaLocation = "/mnt/data/immich";
+      mediaLocation = "/mnt/gallery/media";
       accelerationDevices = null;
       machine-learning.enable = true;
+      redis.enable = true;
+      settings = {
+        newVersionCheck.enabled = true;
+        server.externalDomain = "https://gallery.${homelab.domain}";
+      };
     };
     immich-public-proxy = {
       enable = true;
