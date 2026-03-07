@@ -6,7 +6,7 @@
     settings = {
       PORT = "1411";
       HOST = "127.0.0.1";
-      APP_URL = "https://auth.proxy.${homelab.domain}";
+      APP_URL = "https://auth.${homelab.domain}";
       TRUST_PROXY = true;
     };
   };
