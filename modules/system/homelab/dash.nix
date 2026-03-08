@@ -26,6 +26,13 @@
     "UC9evhW4JB_UdXSLeZGy8lGw" # RaidOwl
     "UCHnyfMqiRRG1u-2MsSQLbXA" # Veritasium
     "UCYO_jab_esuFRV4b17AJtAw" # 3Blue1Brown
+    "UChIs72whgZI9w6d6FhwGGHA" # GamersNexus
+    "UCY1kMZp36IQSyNx_9h4mpCg" # MarkRober
+    "UC8ENHE5xdFSwx71u3fDH5Xw" # ThePrimeagen
+    "UCUyeluBRhGPCW4rPe_UvBZQ" # ThePrimeTime
+    "UCv6J_jJa8GJqFwQNgNrMuww" # ServeTheHome
+    "UCGKEMK3s-ZPbjVOIuAV8clQ" # CoreDumped
+    "UCWQaM7SpSECp9FELz-cHzuQ" # DreamsOfCode
   ];
   gh = [
     "tailscale/tailscale"
