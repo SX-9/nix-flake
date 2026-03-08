@@ -5,6 +5,7 @@
     gnome-network-displays
     gnome-disk-utility
     
+    parted
     smartmontools
     lm_sensors
     ntfs3g
