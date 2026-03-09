@@ -98,9 +98,9 @@
         "SUPER, X, exec, dunstctl close-all && hyprctl reload && hyprctl dispatch submap reset && pkill -SIGUSR2 waybar && systemctl --user restart swww hypridle fusuma"
         "SUPER, Z, exec, dunstctl close-all"
 
-        "SUPER SHIFT, S, exec, hyprshot -m region -o ~/Pictures/Screenshots"
-        "ALT, PRINT, exec, hyprshot -m output -o ~/Pictures/Screenshots"
-        ", PRINT, exec, hyprshot -m region -o ~/Pictures/Screenshots"
+        "SUPER SHIFT, S, exec, hyprshot -zm region -o ~/Pictures/Screenshots; killall -9 hyprpicker hyprshot"
+        "ALT, PRINT, exec, hyprshot -zm output -o ~/Pictures/Screenshots; killall -9 hyprpicker hyprshot"
+        ", PRINT, exec, hyprshot -zm region -o ~/Pictures/Screenshots; killall -9 hyprpicker hyprshot"
 
         "SUPER, R, exec, rofi -show drun -show-icons -display-drun '' -run-command \"uwsm app -- {cmd}\""
         "SUPER, RETURN, exec, rofi -show window -show-icons -drun-display '' -window-format '{c} {t}'"
