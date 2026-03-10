@@ -63,7 +63,7 @@
           interval = 5;
           format = " {used}";
           on-click = "hyprctl dispatch exec '[float; size 75%]' kitty btop";
-          on-click-right = "kitty sh -c 'sudo nix-collect-garbage -d; nix-collect-garbage -d; read'";
+          on-click-right = "kitty sh -c 'sudo nix-collect-garbage -d; nix-collect-garbage -d; nix store optimise; sudo journalctl --rotate --vacuum-time=1s --vacuum-files=1; read'";
         };
         "network" = {
           interval = 1;

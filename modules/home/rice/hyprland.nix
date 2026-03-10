@@ -139,13 +139,13 @@
 
       layerrule = [
         "no_anim on, match:namespace selection" # hyprshot overlay
+        "no_anim on, match:namespace hyprpicker"
         "animation fade, match:namespace swww-daemon"
         "animation fade, match:namespace logout_dialog"
         "animation fade, match:namespace hyprshutdown"
-        "above_lock 1, match:namespace waybar"
         "above_lock 2, match:namespace notifications"
-        "above_lock 2, match:namespace selection"
-        "above_lock 2, match:namespace logout_dialog"
+        # "above_lock 1, match:namespace waybar"
+        # "above_lock 2, match:namespace logout_dialog"
       ];
 
       windowrule = [

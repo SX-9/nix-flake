@@ -61,14 +61,7 @@
       bindc = [
         "SUPER, mouse:274, killactive"
       ];
-
-      bindl = [
-        ", switch:on:Lid Switch, exec, systemctl suspend"
-        "SUPER, SPACE, exec, playerctl play-pause"
-        "SUPER, M, exec, wlogout"
-        "SUPER, TAB, exec, pkill -SIGUSR1 waybar"
-      ];
-
+      
       bindel = [
         ",XF86AudioRaiseVolume, exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"
         ",XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
@@ -77,8 +70,18 @@
         ",XF86MonBrightnessUp, exec, brightnessctl s 10%+"
         ",XF86MonBrightnessDown, exec, brightnessctl s 10%-"
       ];
+
+      bindl = [
+        ", switch:on:Lid Switch, exec, systemctl suspend"
+        "SUPER, SPACE, exec, playerctl play-pause"
+        # "SUPER, M, exec, wlogout"
+        # "SUPER, TAB, exec, pkill -SIGUSR1 waybar"
+      ];
       
       bind = [
+        "SUPER, M, exec, wlogout"
+        "SUPER, TAB, exec, pkill -SIGUSR1 waybar"
+        
         ",XF86Favorites, togglespecialworkspace, x"
         ",XF86Bluetooth, exec, [float; size 75%] uwsm app -- blueman-manager"
         ",XF86Keyboard, exec, hyprctl dispatch submap reset"
