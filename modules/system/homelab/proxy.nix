@@ -24,8 +24,6 @@
     "immich" = "https://gallery.proxy${homelab.domain}";
   };
   exta-conf = ''
-    proxy_set_header Upgrade $http_upgrade;
-    proxy_set_header Connection "upgrade";
     # proxy_set_header X-Auth-User $remote_user;
     proxy_read_timeout 600s;
     proxy_send_timeout 600s;
@@ -66,9 +64,7 @@ in {
           locations."/" = {
             proxyPass = "http://127.0.0.1:81"; # traefik for docker container dynamic proxy
             proxyWebsockets = true;
-            extraConfig = ''
-              proxy_set_header Host $host; 
-            '' + exta-conf;
+            extraConfig = exta-conf;
           };
         };
       } // lib.mapAttrs' (subdomain: cfg: lib.nameValuePair "${subdomain}.${base}" {
