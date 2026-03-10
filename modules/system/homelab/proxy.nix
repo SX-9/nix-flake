@@ -22,8 +22,26 @@
     "dash" = "https://${homelab.domain}";
     "immich" = "https://gallery.proxy${homelab.domain}";
   };
+  exta-conf = ''
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection "upgrade";
+    # proxy_set_header X-Auth-User $remote_user;
+    proxy_read_timeout 600s;
+    proxy_send_timeout 600s;
+    proxy_buffering off;
+    proxy_cache off;
+    send_timeout 600s;
+    client_max_body_size 50000M;
+  '';
 in {
-  users.users.nginx.extraGroups = [ "acme" ];
+  users.users = {
+    nginx.extraGroups = [ "acme" ];
+    traefik.extraGroups = [ "docker" ];
+  };
+  
   security.acme = {
     acceptTerms = true;
     defaults.email = "admin@${homelab.domain}";
@@ -36,47 +54,58 @@ in {
     };
   };
   
-  services.nginx = {
-    enable = true;
-    recommendedProxySettings = true;
-    recommendedTlsSettings = true;
-    virtualHosts = {
-      "_" = {
-        default = true;
-        forceSSL = true;
+  services = {
+    nginx = {
+      enable = true;
+      recommendedProxySettings = true;
+      recommendedTlsSettings = true;
+      virtualHosts = {
+        "_" = {
+          default = true;
+          forceSSL = true;
+          useACMEHost = base;
+          # locations."/".return = "404";
+          locations."/" = {
+            proxyPass = "http://127.0.0.1:81"; # traefik for docker container dynamic proxy
+            proxyWebsockets = true;
+            extraConfig = ''
+              proxy_set_header Host $host; 
+            '' + exta-conf;
+          };
+        };
+      } // lib.mapAttrs' (subdomain: cfg: lib.nameValuePair "${subdomain}.${base}" {
         useACMEHost = base;
-        locations."/".return = "404";
-      };
-    } // lib.mapAttrs' (subdomain: cfg: lib.nameValuePair "${subdomain}.${base}" {
-      useACMEHost = base;
-      forceSSL = true;
-      locations."/".return = "301 https://${base}$request_uri";
-    }) redirects // lib.mapAttrs' (subdomain: cfg: lib.nameValuePair (if subdomain == "@" then base else "${subdomain}.${base}") {
-      useACMEHost = base;
-      forceSSL = true;
-      extraConfig = ''
-        access_log /var/log/nginx/${subdomain}.access.log;
-        error_log /var/log/nginx/${subdomain}.error.log;
-      '';
-      locations."/" = {
-        proxyPass = cfg.dest;
-        proxyWebsockets = true;
-        basicAuthFile = if cfg.auth then "/var/lib/nginx/.htpasswd" else null;
+        forceSSL = true;
+        locations."/".return = "301 https://${base}$request_uri";
+      }) redirects // lib.mapAttrs' (subdomain: cfg: lib.nameValuePair (if subdomain == "@" then base else "${subdomain}.${base}") {
+        useACMEHost = base;
+        forceSSL = true;
         extraConfig = ''
-          proxy_set_header Upgrade $http_upgrade;
-          proxy_set_header Connection "upgrade";
-          # proxy_set_header X-Auth-User $remote_user;
-          proxy_set_header X-Real-IP $remote_addr;
-          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-          proxy_set_header X-Forwarded-Proto $scheme;
-          proxy_read_timeout 600s;
-          proxy_send_timeout 600s;
-          proxy_buffering off;
-          proxy_cache off;
-          send_timeout 600s;
-          client_max_body_size 50000M;
+          access_log /var/log/nginx/${subdomain}.access.log;
+          error_log /var/log/nginx/${subdomain}.error.log;
         '';
+        locations."/" = {
+          proxyPass = cfg.dest;
+          proxyWebsockets = true;
+          basicAuthFile = if cfg.auth then "/var/lib/nginx/.htpasswd" else null;
+          extraConfig = exta-conf;
+        };
+      }) hosts;
+    };
+    traefik = {
+      enable = true;
+      staticConfigOptions = {
+        entryPoints.web.address = "127.0.0.1:81";
+        global = {
+          checkNewVersion = false;
+          sendAnonymousUsage = false;
+        };
+        providers.docker = {
+          endpoint = "unix:///var/run/docker.sock";
+          exposedByDefault = false; 
+          defaultRule = "Host(`ct-{{ normalize .Name }}.${base}`)";
+        };
       };
-    }) hosts;
+    };
   };
 }
