@@ -12,7 +12,7 @@
   ];
 
   boot = {
-    kernelPackages = pkgs.linuxPackages;
+    kernelPackages = pkgs.linuxPackages_zen;
     kernel.sysctl."vm.laptop_mode" = 5;
     initrd.availableKernelModules = [ "thinkpad_acpi" ];
     kernelParams = [
