@@ -42,6 +42,7 @@
       repository = {
         DISABLE_STARS = true;
         DISABLE_FORKS = true;
+        ENABLE_PUSH_CREATE_USER = true;
       };
     };
   };
