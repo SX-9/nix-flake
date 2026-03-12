@@ -255,6 +255,7 @@ in {
                         title = builtins.elemAt e 0;
                         icon = "si:${builtins.elemAt e 1}";
                         url = builtins.elemAt e 2;
+                        alt-status-codes = [ 401 ];
                       }) bookmarks;
                     }
                   ];
