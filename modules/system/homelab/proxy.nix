@@ -11,6 +11,8 @@
     "containers" = { dest = "http://localhost:5001"; auth = false; };
     "gallery"    = { dest = "http://localhost:2283"; auth = false; };
     "remote"     = { dest = "http://localhost:8085"; auth = false; };
+    "search"     = { dest = "http://localhost:8091"; auth = false; };
+    "notify"     = { dest = "http://localhost:8067"; auth = false; };
     "media"      = { dest = "http://localhost:8096"; auth = false; };
     "pass"       = { dest = "http://localhost:8060"; auth = false; };
     "auth"       = { dest = "http://localhost:1411"; auth = false; };
