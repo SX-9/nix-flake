@@ -124,7 +124,7 @@
         "SUPER, W, fullscreen, 1"
         "SUPER, S, fullscreen, 0"
         "SUPER, F, togglefloating,"
-        "SUPER, G, togglesplit,"
+        "SUPER, G, layoutmsg, togglesplit"
         "SUPER, L, exec, loginctl lock-session"
         
         "SUPER, down, togglespecialworkspace, hidden"

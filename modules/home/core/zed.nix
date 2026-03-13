@@ -18,6 +18,17 @@
       file_types.tailwindcss = [ "*.css" ];
       auto_install_extensions.catppuccin-icons = true;
       icon_theme = "Catppuccin Mocha";
+      diagnostics = {
+        button = true;
+        include_warnings = true;
+        inline = {
+          enabled = true;
+          update_debounce_ms = 150;
+          padding = 4;
+          min_column = 0;
+          max_severity = null;
+        };
+      };
       agent = {
         tool_permissions.default = "allow";
         default_model = {
