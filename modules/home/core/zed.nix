@@ -18,6 +18,7 @@
       file_types.tailwindcss = [ "*.css" ];
       auto_install_extensions.catppuccin-icons = true;
       icon_theme = "Catppuccin Mocha";
+      git_panel.tree_view = true;
       diagnostics = {
         button = true;
         include_warnings = true;
