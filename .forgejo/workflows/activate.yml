@@ -16,17 +16,26 @@ jobs:
         shell: /bin/sh -e {0}
     
     steps:
-      - name: Clone Repository
-        run: |
-          rm -rf src
-          git clone https://git.satr14.my.id/satr14/nix-flake.git src
+      # - name: Clone Repository
+      #   run: |
+      #     rm -rf src
+      #     git clone https://git.satr14.my.id/satr14/nix-flake.git src
 
-      - name: Setup SSH Key
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.DEPLOY_SSH_KEY }}" > ~/.ssh/id_ed25519
-          chmod 600 ~/.ssh/id_ed25519
-          printf '%s\n' 'Host localhost 127.0.0.1 ::1' '  StrictHostKeyChecking no' '  UserKnownHostsFile /dev/null' >> ~/.ssh/config
-
+      # - name: Setup SSH Key
+      #   run: |
+      #     mkdir -p ~/.ssh
+      #     echo "${{ secrets.DEPLOY_SSH_KEY }}" > ~/.ssh/id_ed25519
+      #     chmod 600 ~/.ssh/id_ed25519
+      #     printf '%s\n' 'Host localhost 127.0.0.1 ::1' '  StrictHostKeyChecking no' '  UserKnownHostsFile /dev/null' >> ~/.ssh/config
+          
+      - name: Checkout repository
+        uses: actions/checkout@v5
+        
+      - name: Setup SSH
+        id: setupssh
+        uses: actions/setup-ssh@v1
+        with:
+          ssh-private-key: ${{ secrets.DEPLOY_SSH_KEY }}
+            
       - name: Deploy System over SSH
         run: nixos-rebuild switch --flake ./src#homelab --target-host root@localhost -L --show-trace 
