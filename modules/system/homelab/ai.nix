@@ -14,6 +14,7 @@
     open-webui = {
       enable = true;
       port = 8080;
+      environmentFile = "/mnt/data/ollama/.env";
       environment = {
         OLLAMA_BASE_URL = "http://localhost:11434";
         # WEBUI_AUTH = "False";
