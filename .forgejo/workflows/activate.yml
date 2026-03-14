@@ -15,17 +15,17 @@ jobs:
         shell: /bin/sh -e {0}
     
     steps:
-      - name: 1. Clone Repository
+      - name: Clone Repository
         run: |
           rm -rf src
           git clone https://git.satr14.my.id/satr14/nix-flake.git src
 
-      - name: 2. Setup SSH Key
+      - name: Setup SSH Key
         run: |
           mkdir -p ~/.ssh
           echo "${{ secrets.DEPLOY_SSH_KEY }}" > ~/.ssh/id_ed25519
           chmod 600 ~/.ssh/id_ed25519
           ssh-keyscan -H localhost >> ~/.ssh/known_hosts
 
-      - name: 3. Deploy System over SSH
+      - name: Deploy System over SSH
         run: nixos-rebuild switch --flake ./src#homelab --target-host root@localhost -L --show-trace 
