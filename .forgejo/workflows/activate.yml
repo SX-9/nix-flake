@@ -1,0 +1,13 @@
+name: Activate NixOS Configuration On Push
+on:
+  push:
+    branches:
+      - main
+jobs:
+  deploy:
+    runs-on: nixos-server
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Build and activate system
+        run: sudo nixos-rebuild switch --flake .#homelab

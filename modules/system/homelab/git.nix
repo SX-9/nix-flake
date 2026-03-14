@@ -58,7 +58,7 @@
       enable = true;
       name = "nixos-server-runner";
       url = "https://git.proxy.${homelab.domain}";
-      tokenFile = "/mnt/data/forgejo/runner/nixos_deploy_runner_token"; 
+      tokenFile = "/root/forgejo-token-runner"; 
       labels = [ "nixos-server" ];
       hostPackages = with pkgs; [ bash coreutils git nix ];
     };
