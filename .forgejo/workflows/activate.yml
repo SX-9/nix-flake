@@ -10,7 +10,7 @@ env:
   
 jobs:
   deploy:
-    runs-on: nixos-server:host
+    runs-on: self-hosted:host
     defaults:
       run:
         shell: /bin/sh -e {0}

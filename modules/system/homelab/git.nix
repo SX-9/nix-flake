@@ -51,7 +51,7 @@
       name = "nixos-server-runner";
       url = "https://git.proxy.${homelab.domain}";
       tokenFile = "/root/forgejo-token-runner"; 
-      labels = [ "nixos-server:host" ];
+      labels = [ "self-hosted:host" "docker" ];
       hostPackages = with pkgs; [ bash coreutils git nix ];
     };
   };
