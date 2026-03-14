@@ -1,4 +1,4 @@
-{ hostname, flake-path, zsh-theme, ... }: {
+{ git, hostname, flake-path, zsh-theme, ... }: {
   programs = {
     pay-respects = {
       enable = true;
@@ -64,6 +64,7 @@
         "wm-disp" = "wm-ctl dispatch dpms";
 
         "gh-author-setup" = "git config user.name $(gh api -H \"Accept: application/vnd.github+json\" -H \"X-GitHub-Api-Version: 2022-11-28\" /user | jq -r .login) && git config user.email $(gh api -H \"Accept: application/vnd.github+json\" -H \"X-GitHub-Api-Version: 2022-11-28\" /user/emails | jq -r \".[1].email\")";
+        "fg-create-repo" = "git remote add origin ${git.server}/${git.username}/$(basename $PWDw).git && git push";
         "convert-pdf" = "libreoffice --headless --convert-to pdf";
         
         "mcl" = "portablemc start -l $(cat ~/.minecraft/portablemc-launch-params.json | jq -r .email) $(cat ~/.minecraft/portablemc-launch-params.json | jq -r .version)";
