@@ -15,10 +15,10 @@ jobs:
         shell: /bin/sh -e {0}
     steps:
       - name: Clone
-        run: git clone http://localhost:5080/satr14/nix-flake.git src
+        run: git clone -v http://localhost:5080/satr14/nix-flake.git src
       - name: Build
-        run: nixos-rebuild build --flake ./src#homelab
+        run: nixos-rebuild build --flake ./src#homelab -L --show-trace -v
       - name: Activate
-        run: sudo nixos-rebuild switch --flake ./src#homelab
+        run: sudo nixos-rebuild switch --flake ./src#homelab -L --show-trace -v
       - name: Clean
-        run: rm -rf src
+        run: rm -rfv src

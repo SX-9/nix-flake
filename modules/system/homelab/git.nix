@@ -1,4 +1,4 @@
-{ pkgs, homelab, ... }: {
+{ lib, pkgs, homelab, ... }: {
   security.sudo.extraRules = [{ # for configuration activation on push to git
     users = [ "gitea-runner" ]; 
     commands = [{ 
@@ -62,5 +62,11 @@
       labels = [ "nixos-server" ];
       hostPackages = with pkgs; [ bash coreutils git nix nodejs ];
     };
+  };
+  systemd.services."gitea-runner-nixos-deploy".serviceConfig = {
+    # Force systemd to allow privilege escalation (sudo) for this service
+    NoNewPrivileges = lib.mkForce false;
+    RestrictSUIDSGID = lib.mkForce false;
+    PrivateUsers = lib.mkForce false;
   };
 }
