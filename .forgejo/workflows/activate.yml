@@ -3,19 +3,22 @@ on:
   push:
     branches:
       - main
+      
+env:
+  PATH: /run/current-system/sw/bin:/run/wrappers/bin
+      
 jobs:
   build-and-activate:
     runs-on: nixos-server
+    defaults:
+      run:
+        shell: /bin/sh -e {0}
     steps:
       - name: Clone
-        shell: /bin/sh -e {0}
         run: git clone http://localhost:5080/satr14/nix-flake.git src
       - name: Build
-        shell: /bin/sh -e {0}
         run: nixos-rebuild build --flake ./src#homelab
       - name: Activate
-        shell: /bin/sh -e {0}
         run: sudo nixos-rebuild switch --flake ./src#homelab
       - name: Clean
-        shell: /bin/sh -e {0}
         run: rm -rf src
