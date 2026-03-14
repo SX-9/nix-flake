@@ -1,42 +1,24 @@
 name: Activate NixOS Homelab Configuration On Push
 on:
-  workflow_dispatch:
   push:
     branches:
       - main
       
 env:
   PATH: /run/current-system/sw/bin:/run/wrappers/bin
-  
+      
 jobs:
-  deploy:
+  build-and-activate:
     runs-on: self-hosted
     defaults:
       run:
         shell: /bin/sh -e {0}
-    
     steps:
-      # - name: Clone Repository
-      #   run: |
-      #     rm -rf src
-      #     git clone https://git.satr14.my.id/satr14/nix-flake.git src
-
-      # - name: Setup SSH Key
-      #   run: |
-      #     mkdir -p ~/.ssh
-      #     echo "${{ secrets.DEPLOY_SSH_KEY }}" > ~/.ssh/id_ed25519
-      #     chmod 600 ~/.ssh/id_ed25519
-      #     printf '%s\n' 'Host localhost 127.0.0.1 ::1' '  StrictHostKeyChecking no' '  UserKnownHostsFile /dev/null' >> ~/.ssh/config
-          
-      - name: Checkout repository
-        uses: actions/checkout@v5
-        
-      - name: Setup SSH
-        id: setupssh
-        uses: actions/setup-ssh@v1
-        with:
-          ssh-private-key: ${{ secrets.DEPLOY_SSH_KEY }}
-            
-      - name: Deploy System over SSH
-        run: nixos-rebuild switch --flake ./src#homelab --target-host root@localhost -L --show-trace 
-
+      - name: Clone
+        run: git clone -v http://localhost:5080/satr14/nix-flake.git src
+      - name: Build
+        run: nixos-rebuild build --flake ./src#homelab -L --show-trace -v
+      - name: Activate
+        run: sudo nixos-rebuild switch --flake ./src#homelab -L --show-trace -v
+      - name: Clean
+        run: rm -rfv src
