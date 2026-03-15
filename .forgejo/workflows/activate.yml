@@ -25,7 +25,7 @@ jobs:
             -o StrictHostKeyChecking=no \
             -o UserKnownHostsFile=/dev/null \
             root@localhost \
-            "bash -lc 'nixos-rebuild switch --flake git+http://localhost:5080/satr14/nix-flake#homelab -L'"
+            "bash -lc 'nixos-rebuild switch --refresh --flake git+http://localhost:5080/satr14/nix-flake#homelab -L'"
 
       - name: Show generation
         if: always()
