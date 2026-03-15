@@ -1,0 +1,5 @@
+{ ... }: {
+  services.udev.extraRules = ''
+    SUBSYSTEM=="cpu", ACTION=="add", TEST=="online", ATTR{online}=="0", ATTR{online}="1"
+  '';
+}
