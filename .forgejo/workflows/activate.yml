@@ -5,6 +5,9 @@ on:
   push:
     branches: [ main ]
 
+env:
+  PATH: /run/current-system/sw/bin:/run/wrappers/bin
+
 jobs:
   rebuild:
     runs-on: self-hosted
@@ -16,7 +19,7 @@ jobs:
           chmod 600 ./ssh/deploy_key
           echo "StrictHostKeyChecking no" > ./ssh/config
 
-      - name: Rebuild (${{ github.event.inputs.action || 'switch' }})
+      - name: Rebuild
         run: |
           ssh -i ./ssh/deploy_key root@localhost \
             "nixos-rebuild switch \
