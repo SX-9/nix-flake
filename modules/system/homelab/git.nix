@@ -48,7 +48,11 @@
       hostPackages = with pkgs; [ bash coreutils git nix ];
     };
   };
-  users.users.gitea-runner.isSystemUser = true;
+  users.users.gitea-runner = {
+    isSystemUser = true;
+    group = "gitea-runner";
+  };
+  users.groups.gitea-runner = {};
   systemd.services."gitea-runner-nixos-deploy" = {
     restartIfChanged = true;
     # serviceConfig = {
