@@ -17,17 +17,15 @@ jobs:
           mkdir -p ./ssh
           echo "${{ secrets.DEPLOY_SSH_KEY }}" > ./ssh/deploy_key
           chmod 600 ./ssh/deploy_key
-          echo "StrictHostKeyChecking no" > ./ssh/config
 
       - name: Rebuild
         run: |
-          ssh -i ./ssh/deploy_key root@localhost \
-            "nixos-rebuild switch \
-              --flake git+http://localhost:5080/satr14/nix-flake#homelab -L"
+          ssh -i ./ssh/deploy_key -o StrictHostKeyChecking=no root@localhost \
+            "nixos-rebuild switch --flake git+http://localhost:5080/satr14/nix-flake#homelab -L"
 
       - name: Show generation
         if: always()
-        run: ssh -i ./ssh/deploy_key root@localhost "nixos-version"
+        run: ssh -i ./ssh/deploy_key -o StrictHostKeyChecking=no root@localhost "nixos-version"
 
       - name: Clean Up
         if: always()
