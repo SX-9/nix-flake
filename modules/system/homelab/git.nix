@@ -25,7 +25,7 @@
           DISABLE_REGISTRATION = true;
           ENABLE_OPENID_SIGNIN = false;
           ENABLE_OPENID_SIGNUP = false;
-          ENABLE_INTERNAL_SIGNIN = true; 
+          ENABLE_INTERNAL_SIGNIN = false; 
           SHOW_REGISTRATION_BUTTON = false;
           ALLOW_ONLY_EXTERNAL_REGISTRATION = true;
           ALLOW_ONLY_INTERNAL_REGISTRATION = false;
