@@ -22,7 +22,7 @@
   };
   redirects = {
     "www"  = "https://proxy.${homelab.domain}";
-    "dash" = "https://${homelab.domain}";
+    "dash" = "https://proxy.${homelab.domain}";
     "immich" = "https://gallery.proxy.${homelab.domain}";
   };
   exta-conf = ''
